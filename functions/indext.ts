@@ -52,3 +52,7 @@ function typedBoolean<ValueType>(
 ): value is Exclude<ValueType, FalsyType> {
   return Boolean(value);
 }
+
+const arrayWithFalsyValues = [1, undefined, 0, 2];
+
+const arrayWithoutFalsyValues = arrayWithFalsyValues.filter(typedBoolean);

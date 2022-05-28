@@ -28,3 +28,18 @@ function asyncSum(a: number, b: number, cb?: asyncSumCb) {
   if (cb) return cb(result);
   else return Promise.resolve(result);
 }
+
+type IteratorNextType = {
+  value: number | void;
+  done: boolean;
+};
+
+function* generator(start: number) {
+  yield start + 1;
+  yield start + 2;
+}
+
+var iterator = generator(0);
+console.log(iterator.next());
+console.log(iterator.next());
+console.log(iterator.next());

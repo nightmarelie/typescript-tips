@@ -43,3 +43,5 @@ var iterator = generator(0);
 console.log(iterator.next());
 console.log(iterator.next());
 console.log(iterator.next());
+
+const arrayify = <Type extends unknown>(a: Type): Array<Type> => [a];

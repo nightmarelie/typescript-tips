@@ -47,6 +47,7 @@ console.log(iterator.next());
 const arrayify = <Type extends unknown>(a: Type): Array<Type> => [a];
 
 type FalsyType = false | null | undefined | "" | 0;
+
 function typedBoolean<ValueType>(
   value: ValueType
 ): value is Exclude<ValueType, FalsyType> {
@@ -56,3 +57,19 @@ function typedBoolean<ValueType>(
 const arrayWithFalsyValues = [1, undefined, 0, 2];
 
 const arrayWithoutFalsyValues = arrayWithFalsyValues.filter(typedBoolean);
+
+type User = {
+  name: string;
+  displayName: string | null;
+};
+
+function assertDisplayName(
+  user: User
+): asserts user is User & { displayName: string } {
+  if (!user.displayName) throw new Error("Oh no, user has no displayName");
+}
+
+function logUserDisplayName(user: User) {
+  assertDisplayName(user);
+  console.log(user.displayName.toUpperCase());
+}

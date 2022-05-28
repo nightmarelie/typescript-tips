@@ -45,3 +45,10 @@ console.log(iterator.next());
 console.log(iterator.next());
 
 const arrayify = <Type extends unknown>(a: Type): Array<Type> => [a];
+
+type FalsyType = false | null | undefined | "" | 0;
+function typedBoolean<ValueType>(
+  value: ValueType
+): value is Exclude<ValueType, FalsyType> {
+  return Boolean(value);
+}

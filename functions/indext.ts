@@ -17,3 +17,14 @@ class MathUtils implements MathUtilsInterface {
     return a + b;
   }
 }
+
+type asyncSumCb = (result: number) => void;
+
+function asyncSum(a: number, b: number): Promise<number>;
+function asyncSum(a: number, b: number, cb: asyncSumCb): void;
+
+function asyncSum(a: number, b: number, cb?: asyncSumCb) {
+  const result = a + b;
+  if (cb) return cb(result);
+  else return Promise.resolve(result);
+}

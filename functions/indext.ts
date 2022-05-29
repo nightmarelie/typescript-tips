@@ -73,3 +73,27 @@ function logUserDisplayName(user: User) {
   assertDisplayName(user);
   console.log(user.displayName.toUpperCase());
 }
+
+type OperationFn = (left: number, right: number) => number;
+const createOperations = <OperationsType extends Record<string, OperationFn>>(
+  opts: OperationsType
+) => opts;
+
+const operations = createOperations({
+  "+": (left, right) => left + right,
+  "-": (left, right) => left - right,
+  "*": (left, right) => left * right,
+  "/": (left, right) => left / right,
+});
+
+type CalculatorProps = {
+  left: number;
+  operator: keyof typeof operations;
+  right: number;
+};
+function Calculator({ left, operator, right }: CalculatorProps) {
+  const result = operations[operator](left, right);
+  return null;
+}
+
+const examples = null;
